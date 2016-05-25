@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import rx.functions.Action1;
 
-
 /**
  * 测试
  */
@@ -30,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         post.setOnClickListener(this);
     }
     private void getGet(){
-        String url="http://service.test.xgo.com.cn:8080/app/v1/demo/1";
+       String url="http://service.test.xgo.com.cn:8080/app/v1/demo/1";
+
         new BaseProtocol().createObservable(url, MyHttpClient.METHOD_GET,null)
                 .subscribe(new Action1<String>() {
                     @Override

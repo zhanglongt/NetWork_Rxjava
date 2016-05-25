@@ -13,7 +13,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by Administrator on 2016/4/22.
+ * Created by zlt on 2016/4/22.
  */
 public class MyHttpClient {
     public static String METHOD_GET = "GET";
@@ -68,6 +68,14 @@ public class MyHttpClient {
             builder.url(initGetRequest(url, params)).get();
         } else if (MyHttpClient.METHOD_POST.equalsIgnoreCase(method)) {//POST
             builder.url(url).post(initRequestBody(params));
+        }else if(MyHttpClient.METHOD_PUT.equalsIgnoreCase(method)){//PUT
+            builder.url(url).put(initRequestBody(params));
+        }else if(MyHttpClient.METHOD_DELETE.equalsIgnoreCase(method)){//DELETE
+            if (params.size() == 0) {
+                builder.url(url).delete();
+            } else {
+                builder.url(url).delete(initRequestBody(params));
+            }
         }
 
         return builder.build();
@@ -110,5 +118,13 @@ public class MyHttpClient {
             builder.add(key,value.toString());
         }
         return builder.build();
+    }
+    /**
+     * set timeout
+     */
+    public void setConnectTimeout(long time) {
+        if (mOkHttpClient != null) {
+            mOkHttpClient.newBuilder().connectTimeout(time, TimeUnit.MILLISECONDS);
+        }
     }
 }

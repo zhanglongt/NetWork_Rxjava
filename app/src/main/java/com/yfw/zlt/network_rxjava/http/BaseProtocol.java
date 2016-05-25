@@ -10,7 +10,7 @@ import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by Administrator on 2016/4/22.
+ * Created by zlt on 2016/4/22.
  */
 public class BaseProtocol {
     public Observable<String> createObservable(final String url, final String method, final Map<String, Object> params) {
